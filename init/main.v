@@ -36,7 +36,7 @@ fn login(name string, pass string, checkpass bool)!{
 	for line in passwd{
 		split_line := line.split(":")
 		if split_line[0] == name{
-			if (split_line[1] == pass) || !checkpass{
+			if (split_line[1] == pass) || !checkpass || (split_line[7] or {""} == "nopass"){
 				os.setenv('HOME', split_line[5], true)
 				os.setenv('SHELL', split_line[6], true)
 				os.setenv('PATH', '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin', true)
